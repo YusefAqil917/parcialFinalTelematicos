@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: flask_app
+    environment:
+      - FLASK_APP=run.py
+      - FLASK_ENV=development
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=myflaskapp
+    command: flask run --host=0.0.0.0
+    volumes:
+      - .:/app
+    expose:
+      - "5000"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: myflaskapp
+    volumes:
+      - ./home/ubuntu:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+
+  nginx:
+    image: nginx:1.18
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - web
+
+volumes:
+  mysql_data:
