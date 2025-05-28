@@ -194,14 +194,6 @@ openssl req -x509 -nodes -days 365 \
   -out selfsigned.crt \
   -subj "/C=US/ST=State/L=City/O=Dev/OU=Local/CN=localhost"
 ```
-
-## Detener nginx y mysql (para evitar que se solapen puertos y de error al levantar el docker)
-
-```bash
-sudo systemctl stop mysql
-sudo systemctl stop nginx
-```
-
 ## Levantar los contenedores
 
 ```bash
