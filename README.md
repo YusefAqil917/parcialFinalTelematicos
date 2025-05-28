@@ -7,8 +7,7 @@ https://github.com/omondragon/MiniWebApp.git
 ```
 
 ## Cambiar /config.py
-
-**Descomentar la linea Docker para correr la app con la DB de Docker, si se va a correr local, dejar la que esta arriba. En este archivo esta para correr con Docker ya.**
+En este archivo esta para correr con Docker ya.**
 
 ```bash
 class Config:
@@ -247,11 +246,11 @@ sudo cp certs/selfsigned.key /home/vagrant/webapp/nginx/ssl/
 
 # 4. Montar proyecto
 
-Crear los Dockerfile y docker-compose.yml. (paso 3 más arriba)
+Crear los Dockerfile y docker-compose.yml. 
 
-Borrar el default.conf y crear el archivo(esta mas arriba)
+Borrar el default.conf y crear el archivo
 
-Conectarse a la DB y pegar el contenido de `init.sql` (esta en webapp)
+Conectarse a la DB y pegar el contenido de `init.sql` 
 
 ```bash
  docker exec -it mysql_db mysql -u root -p
